@@ -1,37 +1,16 @@
-# Compiler and flags
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -pedantic
-LIBS = -lm
 
-# Targets
-TARGET = scientific_calculator
-SOURCES = main.c calculator.c
-HEADERS = calculator.h
-OBJECTS = $(SOURCES:.c=.o)
+all: calculator
 
-# Default target
-all: $(TARGET)
+calculator: main.o calculator.o
+	$(CC) $(CFLAGS) main.o calculator.o -o calculator -lm
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(TARGET) $(LIBS)
+main.o: main.c calculator.h
+	$(CC) $(CFLAGS) -c main.c
 
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+calculator.o: calculator.c calculator.h
+	$(CC) $(CFLAGS) -c calculator.c
 
-# Clean build files
 clean:
-	rm -f $(OBJECTS) $(TARGET)
-
-# Install (copy to /usr/local/bin)
-install: $(TARGET)
-	sudo cp $(TARGET) /usr/local/bin/
-
-# Run the program
-run: $(TARGET)
-	./$(TARGET)
-
-# Debug build
-debug: CFLAGS += -g
-debug: $(TARGET)
-
-.PHONY: all clean install run debug
+	rm -f *.o calculator
