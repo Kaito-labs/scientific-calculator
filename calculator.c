@@ -17,7 +17,7 @@ double divide(double a, double b) {
     return a / b;
 }
 
-/* Advanced functions */
+/* Advanced functions */       //corrected 
 double power(double base, double exponent) { return pow(base, exponent); }
 double square_root(double x) {
     if (x < 0) {
@@ -52,7 +52,7 @@ double tangent(double degrees) { return tan(degrees_to_radians(degrees)); }
 
 /* Menu */
 void display_menu(void) {
-    printf("\n====== SCIENTIFIC CALCULATOR ======\n");
+    printf("\n===== SCIENTIFIC CALCULATOR =====\n");
     printf("1. Add\n");
     printf("2. Subtract\n");
     printf("3. Multiply\n");
@@ -65,10 +65,10 @@ void display_menu(void) {
     printf("10. Cosine\n");
     printf("11. Tangent\n");
     printf("0. Exit\n");
-    printf("==================================\n");
+    printf("================================\n");
 }
 
-/* Input utility */
+/* Input utility */   //fixed
 void clear_input_buffer(void) {
     int c;
     while ((c = getchar()) != '\n' && c != EOF) {}
